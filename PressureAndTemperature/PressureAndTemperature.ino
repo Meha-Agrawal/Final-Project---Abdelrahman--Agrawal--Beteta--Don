@@ -19,6 +19,8 @@ int reading;
 float voltage;
 float temperatureC;
 float temperatureF;
+
+boolean sendOnce = true;
  
 void setup(void) {
   Serial.begin(9600);   // We'll send debugging information via the Serial monitor
@@ -97,10 +99,11 @@ void tempPressureTrigger(void) {
   int babyWeight = 10;
   int hot = 73;
   int tooHot = 75;
-  if (fsrForce >= babyWeight) {
-    Serial.println("Baby on board!!");
-    if (temperatureF >= hot && temperatureF <= tooHot) {
-      Serial.print("Temperature is: ");
+  if (fsrForce >= babyWeight && sendOnce) {
+    Serial.println("Baby");
+    sendOnce = false;
+    /*if (temperatureF >= hot && temperatureF <= tooHot) {
+      /*Serial.print("Temperature is: ");
       Serial.print(temperatureF);
       Serial.println(" Things are heating up, start to come back");
       delay(3000);
@@ -110,6 +113,8 @@ void tempPressureTrigger(void) {
       Serial.print(temperatureF);
       Serial.println("It is dangerously hot, you need to retrieve your child or pet immediately");
       delay(3000);
-    }
+    }*/
+    delay(5000);
+    //sendOnce = true;
   }
 }
