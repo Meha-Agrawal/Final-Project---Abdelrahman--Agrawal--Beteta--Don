@@ -24,6 +24,7 @@ def send_email():
     smtpserver.close()
 
 while True:
+    print("hi")
     message = ser.readline()
     print(message)
     if message[0] == 'M' :

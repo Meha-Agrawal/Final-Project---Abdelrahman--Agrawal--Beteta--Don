@@ -1,0 +1,28 @@
+// example for the PIR motion sensor SE-10
+
+int timer = 3000;
+int alarmPin = 0;
+int alarmValue = 0;
+int ledPin = 13;
+
+void setup () {
+Serial.begin (9600);
+pinMode(ledPin, OUTPUT);  
+pinMode(alarmPin, INPUT);
+delay (2000); // it takes the sensor 2 seconds to scan the area around it before it can detect infrared presence. 
+}
+
+void loop (){
+alarmValue = analogRead(alarmPin);
+
+if (alarmValue > 1){
+digitalWrite(ledPin, HIGH);
+delay(timer);
+digitalWrite(ledPin, LOW);
+}
+
+Serial.println (alarmValue);
+
+delay (10);
+
+}
