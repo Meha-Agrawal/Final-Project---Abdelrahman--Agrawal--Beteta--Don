@@ -8,7 +8,7 @@ def send_baby():
     GMAIL_USER = 'tempalertgwc@gmail.com'
     GMAIL_PASS = 'GWCROCKS'
     SUBJECT = 'THERMALERT: Baby on Board!'
-    TEXT = 'You seem to have forgotten your baby in the car seat.Remember, it is illegal to leave a child in an unattended vehicle.'/
+    TEXT = 'You seem to have forgotten your baby in the car seat.Remember, it is illegal to leave a child in an unattended vehicle.'
 
     print("Sending Baby Email")
     smtpserver = smtplib.SMTP("smtp.gmail.com",587)
@@ -29,7 +29,7 @@ def send_warning(temp_hot):
     GMAIL_PASS = 'GWCROCKS'
     SUBJECT = 'THERMALERT: Reaching Unsafe Temperatures!'
     TEXT = 'Your car is reaching unsafe temperatures for your child or pet. The temperature is now:'+ temp_hot
-    ser = serial.Serial('COM3', 9600)
+
     print("Sending Warning Email")
     smtpserver = smtplib.SMTP("smtp.gmail.com",587)
     smtpserver.ehlo()
@@ -45,12 +45,11 @@ def send_warning(temp_hot):
 
 
 def send_danger(temp_danger):
-    TO = 'salma.zakaria@gmail.com'
+    TO = '3056065141@txt.att.net'
     GMAIL_USER = 'tempalertgwc@gmail.com'
     GMAIL_PASS = 'GWCROCKS'
     SUBJECT = 'THERMALERT: Reaching DEADLY Temperatures!'
     TEXT = 'YOUR CAR IS NOW REACHING DEADLY TEMPERATURES. PLEASE RETRIEVE YOUR CHILD OR PET IMMEDIATELY! The Temperature is now:'+temp_danger
-    ser = serial.Serial('COM3', 9600)
     print("Sending Danger Email")
     smtpserver = smtplib.SMTP("smtp.gmail.com",587)
     smtpserver.ehlo()
@@ -66,7 +65,7 @@ while True:
     message = ser.readline()
     print(message)
     if message[0] == 'B' :
-        send_email()
+        send_baby()
     elif message[0] =='W':
         temp_hot= message[14:]
         send_warning(temp_hot)
